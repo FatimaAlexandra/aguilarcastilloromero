@@ -1,5 +1,7 @@
 package empresa;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author SIS13B
@@ -15,6 +17,8 @@ public class Empresa {
         
         
         System.out.println("Escriban aqui hola xd");
+        
+        JOptionPane.showMessageDialog(null, "probando :v ");
     }
     
 }
