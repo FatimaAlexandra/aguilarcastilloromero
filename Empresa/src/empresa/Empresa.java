@@ -19,11 +19,15 @@ public class Empresa {
         System.out.println("Escriban aqui hola xd");
         
         JOptionPane.showMessageDialog(null, "probando :v ");
+         JOptionPane.showMessageDialog(null, "probando :v ");
+         JOptionPane.showMessageDialog(null, "probando :v ");
         
-        
-        
-        
+         
+         
         JOptionPane.showMessageDialog(null, "si puedo ver tu probando");
+        
+        
+        JOptionPane.showMessageDialog(null, "cambio exitoso :v");
     }
     
 }

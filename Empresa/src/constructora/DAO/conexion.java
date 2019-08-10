@@ -10,5 +10,7 @@ package constructora.DAO;
  * @author jorge Alberto
  */
 public class conexion {
+     
+    
     
 }
