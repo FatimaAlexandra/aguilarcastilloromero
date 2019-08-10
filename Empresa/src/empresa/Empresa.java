@@ -7,7 +7,7 @@ package empresa;
 
 /**
  *
- * @author jorge Alberto
+ * @author Alexandra
  */
 public class Empresa {
 
