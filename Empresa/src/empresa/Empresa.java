@@ -14,7 +14,7 @@ public class Empresa {
         
         
         
-        System.out.println("Escriban aqui hola");
+        System.out.println("Escriban aqui hola xd");
     }
     
 }
