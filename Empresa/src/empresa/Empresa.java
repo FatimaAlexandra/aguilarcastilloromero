@@ -22,7 +22,8 @@ public class Empresa {
          JOptionPane.showMessageDialog(null, "probando :v ");
          JOptionPane.showMessageDialog(null, "probando :v ");
         
-        
+         
+         
         JOptionPane.showMessageDialog(null, "si puedo ver tu probando");
     }
     
