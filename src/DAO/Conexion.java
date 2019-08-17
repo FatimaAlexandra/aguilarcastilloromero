@@ -23,7 +23,7 @@ public class Conexion {
         Class.forName(driver);
         return DriverManager.getConnection(url, user, password);
     }
-
+    
     public Conexion() {
     }
 

@@ -9,17 +9,23 @@ import LogicaNegocio.*;
 import DAO.*;
 import java.util.logging.*;
 import java.sql.*;
+import DAO.Conexion;
+import Identidades.Carrera;
+import static java.awt.Frame.ICONIFIED;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jorge Alberto
  */
 public class frmCarrera extends javax.swing.JPanel {
 TransaccionesCarrera ob=new TransaccionesCarrera();
-
+DefaultComboBoxModel modelo;
     /**
      * Creates new form frmCarrera
      */
-    public frmCarrera() {
+    public frmCarrera(){
         initComponents();
         llenar();
       //  btnagregar.setEnabled(false);
@@ -47,13 +53,13 @@ private  void llenar(){
         jLabel5 = new javax.swing.JLabel();
         txtnombre = new javax.swing.JTextField();
         txtmaterias = new javax.swing.JTextField();
-        cmbfacultad = new javax.swing.JComboBox<>();
         btnnuevo = new javax.swing.JButton();
         btnagregar = new javax.swing.JButton();
         btnmodificar = new javax.swing.JButton();
         btneliminar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         JTablecarrera = new javax.swing.JTable();
+        cmbfacultad = new javax.swing.JComboBox<>();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -135,6 +141,8 @@ private  void llenar(){
         });
         jScrollPane2.setViewportView(JTablecarrera);
 
+        cmbfacultad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -154,27 +162,29 @@ private  void llenar(){
                                 .addComponent(btneliminar))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(jLabel2)
-                        .addGap(35, 35, 35)
-                        .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmbfacultad, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtmaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(247, 247, 247)
-                        .addComponent(jLabel1)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(54, 54, 54)
+                                .addComponent(jLabel2)
+                                .addGap(35, 35, 35)
+                                .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel5)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtmaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtnombre, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                            .addComponent(cmbfacultad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,6 +223,7 @@ private  void llenar(){
     ob.agregar(txtnombre.getText(),txtmaterias.getText(), cmbfacultad.getSelectedItem().toString());
        llenar();
        btnagregar.setEnabled(false);
+        JOptionPane.showMessageDialog(null, "Datos insertados");
     }//GEN-LAST:event_btnagregarActionPerformed
 
     private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
@@ -234,7 +245,6 @@ private  void llenar(){
     private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
        ob.modificar(txtcodigo.getText(),txtnombre.getText(),txtmaterias.getText(), cmbfacultad.getSelectedItem().toString());
         llenar();
-        limpiar();
     }//GEN-LAST:event_btnmodificarActionPerformed
 
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
@@ -250,50 +260,36 @@ private  void llenar(){
         txtmaterias.setText(JTablecarrera.getValueAt(f, 2).toString());
         cmbfacultad.setSelectedItem(JTablecarrera.getValueAt(f, 3).toString());
     }//GEN-LAST:event_JTablecarreraMouseClicked
-    void mostrarFacultad()
-    {
-        /*try{
-        String sql="Select * from facultad";
-        Statement st =cn.createStatement();
-        ResultSet rs = st.executeQuery(sql);
-        while(rs.next())
-        {
-            cmbfacultad.addItem(rs.getString("nombre"));
-        }
-        
+
+
+         
+    public void mostrarFacultad() {
+       Conexion con = new Conexion();
+       Connection cn;
+       ResultSet res;
+       
+       try {
+            con.con();
+            String sql="Select * from facultad";
+            PreparedStatement pre = con.con().prepareCall(sql);
+            res = pre.executeQuery();
+            modelo.removeAllElements();
+            while(res.next()){
+                 modelo.addElement(res.getString("nombre"));
+             }
+           cmbfacultad.setModel(modelo); 
+            con.con();
+         } catch (Exception e) {
             
-        } catch (Exception e) {
-        }*/
-    }
-        /*void llenarFacultad()
-        {
-            try
-            {
-                con.Open();
-                SqlCommand cmd = new SqlCommand("Select * from Seccion", con);
-                dr = cmd.ExecuteReader();
-                while (dr.Read())
-                {
-                    cmb_NombreSeccion.Items.Add(dr["Nombre_Seccion"].ToString());
-                }
-                cmb_NombreSeccion.Items.Insert(0, "--Seleccionar--");
-                cmb_NombreSeccion.DisplayMember = "Nombre_Seccion";
-                cmb_NombreSeccion.ValueMember = "Id_Seccion";
-                cmb_NombreSeccion.SelectedIndex = 0;
-            }
-            catch (Exception error)
-            {
-                MessageBox.Show("Error de SQL: " + error.Message);
-            }
-            finally
-            {
-                con.Close();
-            }
-        }*/
-      
+            System.out.println("ERROR: failed to load HSQLDB JDBC driver.");
+             e.printStackTrace();
+        }
+                    
+      }
+       
     
     
-    
+        
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable JTablecarrera;
