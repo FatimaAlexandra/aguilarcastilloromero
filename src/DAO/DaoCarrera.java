@@ -43,8 +43,8 @@ PreparedStatement ps;       //para sentencias sql
     @Override
     public int agrgarCarrera(Carrera c) throws ClassNotFoundException, SQLException {
         try {
-            ps=super.con().prepareStatement("insert into carrera(nombre, cantidadMaterias, codigoFacultad) values(?,?,"
-                    + "(select codigoFacultad from facultad where nombre=?)");
+            ps=super.con().prepareStatement("insert into carrera(nombre, cantidadMaterias, codigoFacultad)"
+                    + "values(?,?,(select codigoFacultad from facultad where nombre=?))");
             ps.setString(1, c.getNombre());
             ps.setInt(2, c.getCantidadMaterias());
             ps.setString(3, c.getCodigoFacultad());
@@ -61,7 +61,7 @@ PreparedStatement ps;       //para sentencias sql
     @Override
     public int modificarCarrera(Carrera c) throws ClassNotFoundException, SQLException {
         try {
-            ps=super.con().prepareStatement("update carrera set nombre=?,cantidadMaterias=?, "
+            ps=super.con().prepareStatement ("update carrera set nombre=?,cantidadMaterias=?,"
                     + "codigoFacultad=(select codigoFacultad from facultad where nombre=?) where codigoCarrera=?");
             
             ps.setString(1, c.getNombre());

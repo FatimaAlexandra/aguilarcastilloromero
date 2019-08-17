@@ -42,9 +42,9 @@ public class TransaccionesCarrera {
         try {
             c=new Carrera(nombre, Integer.parseInt(cantidadMaterias), codigoFacultad);
             res=ob.agrgarCarrera(c);
-            if(res>0)
+            if(res>=1)
                 JOptionPane.showMessageDialog(null, "Registro ingresado correctamente");
-            else
+            else 
                 JOptionPane.showMessageDialog(null, "Registro no se pudo ingresar");
             
         } catch (Exception e) {
