@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Presentacion;
 
 /**
@@ -266,15 +261,20 @@ public class Principal extends javax.swing.JFrame {
 
     private void carreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carreraActionPerformed
         ifca.setVisible(true);
+        iffa.setVisible(false);
+        ifes.setVisible(false);        
     }//GEN-LAST:event_carreraActionPerformed
 
     private void facultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facultadActionPerformed
         iffa.setVisible(true);
-        
+        ifca.setVisible(false);
+        ifes.setVisible(false);        
     }//GEN-LAST:event_facultadActionPerformed
 
     private void estudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estudianteActionPerformed
         ifes.setVisible(true);
+        ifca.setVisible(false);
+        iffa.setVisible(false);
     }//GEN-LAST:event_estudianteActionPerformed
 
     /**
