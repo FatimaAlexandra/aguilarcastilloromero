@@ -6,24 +6,27 @@
 package Presentacion;
 
 import LogicaNegocio.*;
-
+import DAO.*;
+import java.util.logging.*;
+import java.sql.*;
 /**
  *
  * @author jorge Alberto
  */
 public class frmCarrera extends javax.swing.JPanel {
 TransaccionesCarrera ob=new TransaccionesCarrera();
+
     /**
      * Creates new form frmCarrera
      */
     public frmCarrera() {
         initComponents();
         llenar();
-        btnagregar.setEnabled(false);
-        cmbfacultad();
+      //  btnagregar.setEnabled(false);
+       mostrarFacultad();
     }
 private  void llenar(){
-    jTable1.setModel(ob.mostrar());
+    JTablecarrera.setModel(ob.mostrar());
 }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,7 +53,7 @@ private  void llenar(){
         btnmodificar = new javax.swing.JButton();
         btneliminar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        JTablecarrera = new javax.swing.JTable();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -114,7 +117,7 @@ private  void llenar(){
             }
         });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        JTablecarrera.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -125,12 +128,12 @@ private  void llenar(){
 
             }
         ));
-        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+        JTablecarrera.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable2MouseClicked(evt);
+                JTablecarreraMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(JTablecarrera);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -240,16 +243,27 @@ private  void llenar(){
         limpiar();
     }//GEN-LAST:event_btneliminarActionPerformed
 
-    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
-        int f=jTable1.getSelectedRow();
-        txtcodigo.setText(jTable1.getValueAt(f, 0).toString());
-        txtnombre.setText(jTable1.getValueAt(f, 1).toString());
-        txtmaterias.setText(jTable1.getValueAt(f, 2).toString());// TODO add your handling code here:
-        cmbfacultad.setSelectedItem(jTable1.getValueAt(f, 4).toString());// TODO add your handling code here:);
-    }//GEN-LAST:event_jTable2MouseClicked
-    void cmbfacultad()
+    private void JTablecarreraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTablecarreraMouseClicked
+        int f=JTablecarrera.getSelectedRow();
+        txtcodigo.setText(JTablecarrera.getValueAt(f, 0).toString());
+        txtnombre.setText(JTablecarrera.getValueAt(f, 1).toString());
+        txtmaterias.setText(JTablecarrera.getValueAt(f, 2).toString());
+        cmbfacultad.setSelectedItem(JTablecarrera.getValueAt(f, 3).toString());
+    }//GEN-LAST:event_JTablecarreraMouseClicked
+    void mostrarFacultad()
     {
-        cmbfacultad.addItem("Computacion");
+        /*try{
+        String sql="Select * from facultad";
+        Statement st =cn.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        while(rs.next())
+        {
+            cmbfacultad.addItem(rs.getString("nombre"));
+        }
+        
+            
+        } catch (Exception e) {
+        }*/
     }
         /*void llenarFacultad()
         {
@@ -282,6 +296,7 @@ private  void llenar(){
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable JTablecarrera;
     private javax.swing.JButton btnagregar;
     private javax.swing.JButton btneliminar;
     private javax.swing.JButton btnmodificar;
@@ -295,7 +310,6 @@ private  void llenar(){
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField txtcodigo;
     private javax.swing.JTextField txtmaterias;
     private javax.swing.JTextField txtnombre;

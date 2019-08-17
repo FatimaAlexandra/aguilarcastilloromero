@@ -40,7 +40,7 @@ public class TransaccionesCarrera {
     }
     public void agregar(String nombre, String cantidadMaterias, String codigoFacultad){
         try {
-            c=new Carrera(nombre, Integer.parseInt(cantidadMaterias), Integer.parseInt(codigoFacultad));
+            c=new Carrera(nombre, Integer.parseInt(cantidadMaterias), codigoFacultad);
             res=ob.agrgarCarrera(c);
             if(res>0)
                 JOptionPane.showMessageDialog(null, "Registro ingresado correctamente");
@@ -53,7 +53,7 @@ public class TransaccionesCarrera {
     
     public void modificar(String codigoCarrera, String nombre, String cantidadMaterias, String codigoFacultad){
         try {
-            c=new Carrera(codigoCarrera, Integer.parseInt(cantidadMaterias), Integer.parseInt(codigoFacultad));
+            c=new Carrera(codigoCarrera, Integer.parseInt(cantidadMaterias), codigoFacultad);
             res=ob.modificarCarrera(c);
             if(res>0)
                 JOptionPane.showMessageDialog(null, "Registro modificado correctamente");

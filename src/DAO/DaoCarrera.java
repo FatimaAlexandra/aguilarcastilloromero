@@ -27,7 +27,7 @@ PreparedStatement ps;       //para sentencias sql
             ps=super.con().prepareStatement("select * from carrera");
             rs=ps.executeQuery();
             while(rs.next()){
-                c=new Carrera(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4));
+                c=new Carrera(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4));
                 ar.add(c);
             }
         } catch (Exception e) {
@@ -43,10 +43,11 @@ PreparedStatement ps;       //para sentencias sql
     @Override
     public int agrgarCarrera(Carrera c) throws ClassNotFoundException, SQLException {
         try {
-            ps=super.con().prepareStatement("insert into carrera(nombre, cantidadMaterias, codigoFacultad) values(?,?,?)");
+            ps=super.con().prepareStatement("insert into carrera(nombre, cantidadMaterias, codigoFacultad) values(?,?,"
+                    + "(select codigoFacultad from facultad where nombre=?)");
             ps.setString(1, c.getNombre());
-            ps.setDouble(2, c.getCantidadMaterias());
-            ps.setDouble(2, c.getCodigoFacultad());
+            ps.setInt(2, c.getCantidadMaterias());
+            ps.setString(3, c.getCodigoFacultad());
             res=ps.executeUpdate();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -60,11 +61,12 @@ PreparedStatement ps;       //para sentencias sql
     @Override
     public int modificarCarrera(Carrera c) throws ClassNotFoundException, SQLException {
         try {
-            ps=super.con().prepareStatement("update antidad set nombre=?,cantidadMaterias=?, codigoFacultad=? where id=?");
+            ps=super.con().prepareStatement("update carrera set nombre=?,cantidadMaterias=?, "
+                    + "codigoFacultad=(select codigoFacultad from facultad where nombre=?) where codigoCarrera=?");
             
             ps.setString(1, c.getNombre());
             ps.setDouble(2, c.getCantidadMaterias());
-            ps.setInt(3, c.getCodigoFacultad());
+            ps.setString(3, c.getCodigoFacultad());
             ps.setInt(4, c.getCodigoCarrera());
             res=ps.executeUpdate();
         } catch (Exception e) {
@@ -79,7 +81,7 @@ PreparedStatement ps;       //para sentencias sql
     @Override
     public int eliminarCarrera(Carrera c) throws ClassNotFoundException, SQLException {
         try {
-            ps=super.con().prepareStatement("delete from carrera where id=?");
+            ps=super.con().prepareStatement("delete from carrera where codigoCarrera=?");
             
             ps.setInt(1, c.getCodigoCarrera());
             res=ps.executeUpdate();
