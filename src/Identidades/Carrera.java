@@ -30,7 +30,7 @@ public class Carrera {
         this.cantidadMaterias = cantidadMaterias;
         this.codigoFacultad = codigoFacultad;
     }
-
+    
     public Carrera(int codigoCarrera) {
         this.codigoCarrera = codigoCarrera;
     }
