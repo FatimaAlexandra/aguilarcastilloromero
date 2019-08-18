@@ -1,5 +1,9 @@
 package Presentacion;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author jorge Alberto
@@ -9,10 +13,12 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
-    frmCarrera frmcarrera = new frmCarrera();
+    
     frmEstudiante frmestudiante = new frmEstudiante();
+    frmCarrera frmcarrera;
     frmFacultad frmfacultad = new frmFacultad();
-    public Principal() {
+    public Principal() throws ClassNotFoundException, SQLException {
+        this.frmcarrera = new frmCarrera();
         initComponents();
         IniciarPanels();
     }
@@ -216,7 +222,7 @@ public class Principal extends javax.swing.JFrame {
         menuBar.add(fileMenu);
 
         editMenu.setMnemonic('e');
-        editMenu.setText("Edit");
+        editMenu.setText("Reportes");
 
         cutMenuItem.setMnemonic('t');
         cutMenuItem.setText("Cut");
@@ -307,7 +313,13 @@ public class Principal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Principal().setVisible(true);
+                try {
+                    new Principal().setVisible(true);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
