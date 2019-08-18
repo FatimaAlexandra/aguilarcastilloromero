@@ -28,7 +28,7 @@ DefaultComboBoxModel modelo;
      * @throws java.lang.ClassNotFoundException
      * @throws java.sql.SQLException
      */
-    public frmCarrera() throws ClassNotFoundException, SQLException{
+    public frmCarrera() throws ClassNotFoundException, SQLException {
         initComponents();
         ob.cargarFacultad(cmbfacultad);
         llenar();
@@ -263,7 +263,7 @@ private  void llenar(){
     ob.agregar(txtnombre.getText(),txtmaterias.getText(), cmbfacultad.getSelectedItem().toString());
        llenar();
        btnagregar.setEnabled(false);
-        JOptionPane.showMessageDialog(null, "Datos insertados");
+  
     }//GEN-LAST:event_btnagregarActionPerformed
 
     private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed

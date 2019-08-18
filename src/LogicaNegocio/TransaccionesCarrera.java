@@ -59,9 +59,9 @@ public class TransaccionesCarrera {
         try {
             c=new Carrera(Integer.parseInt(codigoCarrera),nombre, Integer.parseInt(cantidadMaterias), codigoFacultad);
             res=ob.modificarCarrera(c);
-            if(res>0)
+            if(res>0){
                 JOptionPane.showMessageDialog(null, "Registro modificado correctamente");
-            else
+            }else
                 JOptionPane.showMessageDialog(null, "Registro no se pudo modificar");
             
         } catch (Exception e) {
