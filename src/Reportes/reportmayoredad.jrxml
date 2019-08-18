@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e835d13a-001c-4366-bb9d-2f0180c3523f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     estudiante.`codigoEstudiante` AS estudiante_codigoEstudiante,
+     estudiante.`nombre` AS estudiante_nombre,
+     estudiante.`edad` AS estudiante_edad,
+     estudiante.`genero` AS estudiante_genero,
+     estudiante.`cum` AS estudiante_cum,
+     estudiante.`intereses` AS estudiante_intereses,
+     estudiante.`codigoCarrera` AS estudiante_codigoCarrera,
+     carrera.`codigoCarrera` AS carrera_codigoCarrera,
+     carrera.`nombre` AS carrera_nombre,
+     carrera.`cantidadMaterias` AS carrera_cantidadMaterias,
+     carrera.`codigoFacultad` AS carrera_codigoFacultad,
+     carrera.`estado` AS carrera_estado
+FROM
+     `carrera` carrera INNER JOIN `estudiante` estudiante ON carrera.`codigoCarrera` = estudiante.`codigoCarrera`
+WHERE estudiante.`edad`>=18]]>
+	</queryString>
+	<field name="estudiante_codigoEstudiante" class="java.lang.Integer"/>
+	<field name="estudiante_nombre" class="java.lang.String"/>
+	<field name="estudiante_edad" class="java.lang.Integer"/>
+	<field name="estudiante_genero" class="java.lang.String"/>
+	<field name="estudiante_cum" class="java.lang.Double"/>
+	<field name="estudiante_intereses" class="java.lang.String"/>
+	<field name="estudiante_codigoCarrera" class="java.lang.Integer"/>
+	<field name="carrera_codigoCarrera" class="java.lang.Integer"/>
+	<field name="carrera_nombre" class="java.lang.String"/>
+	<field name="carrera_cantidadMaterias" class="java.lang.Integer"/>
+	<field name="carrera_codigoFacultad" class="java.lang.Integer"/>
+	<field name="carrera_estado" class="java.lang.Integer"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="9c2a2277-9569-46cb-b05c-eacfdb5870c7"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="c639b47a-c69c-4b8e-929c-dd07a91d4b47"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Estudiante]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="29f2e2f3-270c-43ad-a5a1-232babc659cc"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Mayores de edad]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="1f654fd0-834c-4033-8985-0446334a3da0"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="408ea7ad-13f2-4daf-ab3f-6d0b140325c9"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Codigo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="79" y="0" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="a9f30892-a2ba-4112-89bd-a091162c8041"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="158" y="0" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="7f24dead-70d8-4f84-a8d8-4a80d2d11b85"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Edad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="237" y="0" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="d4dcdea7-95be-46ce-bd55-d5c56fd771f9"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Genero]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="316" y="0" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="b9a16d2c-a9a6-4dd3-b869-9d0461db5705"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cum]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="395" y="0" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="a80add93-dc62-43be-ae22-5c80481d4703"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Intereses]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="474" y="0" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="7ee2ddb8-3e86-419c-a25f-c154cd3c19ce"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Carrera]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="127bec4c-2ed0-407a-b96c-8001ec4926fe"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="79" height="20" uuid="4fc9c1ce-b8d7-4255-b184-62770de0ba41"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estudiante_codigoEstudiante}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="79" y="0" width="79" height="20" uuid="5680dbb3-cd1c-45ab-b792-e8d8d647e83b"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estudiante_nombre}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="158" y="0" width="79" height="20" uuid="ca5be78f-1909-48b0-baa9-8f40b9a248a8"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estudiante_edad}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="237" y="0" width="79" height="20" uuid="ca2a643b-8a88-4193-b6d3-09c87688a4db"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estudiante_genero}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="316" y="0" width="79" height="20" uuid="78acff16-8349-4ae3-b7bb-d83eca4e12f7"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estudiante_cum}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="395" y="0" width="79" height="20" uuid="ea559c66-dfaa-44ac-95d8-e6ce3e4defa5"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estudiante_intereses}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="474" y="0" width="79" height="20" uuid="c283587a-205a-4ee4-bd73-6bd73239cc67"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{carrera_nombre}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="41468f5c-5767-4255-a9cd-ee4554a5d636"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="7068cc5b-7851-4ab2-8269-19094429cd8d"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="cc2cebb2-221a-48cf-be71-dd338ad4e9d1"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

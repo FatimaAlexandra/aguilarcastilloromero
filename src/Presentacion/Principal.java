@@ -18,6 +18,7 @@ public class Principal extends javax.swing.JFrame {
     frmCarrera frmcarrera;
     frmFacultad frmfacultad = new frmFacultad();
     frmReportes frmreportes = new frmReportes();
+    frmReportes2 frmr2 = new frmReportes2();
     public Principal() throws ClassNotFoundException, SQLException {
         this.frmcarrera = new frmCarrera();
         initComponents();
@@ -31,6 +32,7 @@ public class Principal extends javax.swing.JFrame {
     ifes.setContentPane(frmestudiante);
     iffa.setContentPane(frmfacultad);
     ifreportes.setContentPane(frmreportes);
+    ifr2.setContentPane(frmr2);
     }
     void sized()
     {
@@ -54,6 +56,7 @@ public class Principal extends javax.swing.JFrame {
         ifes = new javax.swing.JInternalFrame();
         iffa = new javax.swing.JInternalFrame();
         ifreportes = new javax.swing.JInternalFrame();
+        ifr2 = new javax.swing.JInternalFrame();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         facultad = new javax.swing.JMenuItem();
@@ -61,9 +64,8 @@ public class Principal extends javax.swing.JFrame {
         estudiante = new javax.swing.JMenuItem();
         exitMenuItem = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
-        cutMenuItem = new javax.swing.JMenuItem();
         pasteMenuItem = new javax.swing.JMenuItem();
-        deleteMenuItem = new javax.swing.JMenuItem();
+        cutMenuItem = new javax.swing.JMenuItem();
 
         jInternalFrame1.setVisible(true);
 
@@ -219,11 +221,32 @@ public class Principal extends javax.swing.JFrame {
         desktopPane.add(ifreportes);
         ifreportes.setBounds(10, 10, 660, 450);
 
-        fileMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/archivo.jpg"))); // NOI18N
+        ifr2.setClosable(true);
+        ifr2.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        ifr2.setIconifiable(true);
+        ifr2.setMaximizable(true);
+        ifr2.setVisible(false);
+
+        javax.swing.GroupLayout ifr2Layout = new javax.swing.GroupLayout(ifr2.getContentPane());
+        ifr2.getContentPane().setLayout(ifr2Layout);
+        ifr2Layout.setHorizontalGroup(
+            ifr2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        ifr2Layout.setVerticalGroup(
+            ifr2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        desktopPane.add(ifr2);
+        ifr2.setBounds(60, 30, 530, 420);
+
+        fileMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ca.png"))); // NOI18N
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
 
         facultad.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
+        facultad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fa.png"))); // NOI18N
         facultad.setMnemonic('o');
         facultad.setText("Facultad");
         facultad.setInheritsPopupMenu(true);
@@ -235,6 +258,7 @@ public class Principal extends javax.swing.JFrame {
         fileMenu.add(facultad);
 
         carrera.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        carrera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/images.png"))); // NOI18N
         carrera.setMnemonic('s');
         carrera.setText("Carrera");
         carrera.addActionListener(new java.awt.event.ActionListener() {
@@ -245,6 +269,7 @@ public class Principal extends javax.swing.JFrame {
         fileMenu.add(carrera);
 
         estudiante.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
+        estudiante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/estudinat.png"))); // NOI18N
         estudiante.setMnemonic('a');
         estudiante.setText("Estudiante");
         estudiante.addActionListener(new java.awt.event.ActionListener() {
@@ -255,6 +280,7 @@ public class Principal extends javax.swing.JFrame {
         fileMenu.add(estudiante);
 
         exitMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        exitMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/16 (Delete).jpg"))); // NOI18N
         exitMenuItem.setMnemonic('x');
         exitMenuItem.setText("Exit");
         exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -266,26 +292,29 @@ public class Principal extends javax.swing.JFrame {
 
         menuBar.add(fileMenu);
 
-        editMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reportes.JPG"))); // NOI18N
+        editMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pdf.png"))); // NOI18N
         editMenu.setMnemonic('e');
         editMenu.setText("Reportes");
 
+        pasteMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/descarga.png"))); // NOI18N
+        pasteMenuItem.setMnemonic('p');
+        pasteMenuItem.setText("Facultad y carrera");
+        pasteMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pasteMenuItemActionPerformed(evt);
+            }
+        });
+        editMenu.add(pasteMenuItem);
+
+        cutMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/descarga.png"))); // NOI18N
         cutMenuItem.setMnemonic('t');
-        cutMenuItem.setText("Reporte");
+        cutMenuItem.setText("Estudiantes");
         cutMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cutMenuItemActionPerformed(evt);
             }
         });
         editMenu.add(cutMenuItem);
-
-        pasteMenuItem.setMnemonic('p');
-        pasteMenuItem.setText("Paste");
-        editMenu.add(pasteMenuItem);
-
-        deleteMenuItem.setMnemonic('d');
-        deleteMenuItem.setText("Delete");
-        editMenu.add(deleteMenuItem);
 
         menuBar.add(editMenu);
 
@@ -302,7 +331,7 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
         );
 
         pack();
@@ -317,6 +346,7 @@ public class Principal extends javax.swing.JFrame {
         iffa.setVisible(false);
         ifes.setVisible(false);
         ifreportes.setVisible(false);
+        ifr2.setVisible(false);
     }//GEN-LAST:event_carreraActionPerformed
     
     private void facultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facultadActionPerformed
@@ -324,6 +354,7 @@ public class Principal extends javax.swing.JFrame {
         ifca.setVisible(false);
         ifes.setVisible(false);
         ifreportes.setVisible(false);
+        ifr2.setVisible(false);
     }//GEN-LAST:event_facultadActionPerformed
 
     private void estudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estudianteActionPerformed
@@ -331,6 +362,7 @@ public class Principal extends javax.swing.JFrame {
         ifca.setVisible(false);
         iffa.setVisible(false);
         ifreportes.setVisible(false);
+        ifr2.setVisible(false);
     }//GEN-LAST:event_estudianteActionPerformed
 
     private void cutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutMenuItemActionPerformed
@@ -338,7 +370,16 @@ public class Principal extends javax.swing.JFrame {
         ifes.setVisible(false);
         ifca.setVisible(false);
         iffa.setVisible(false);
+        ifr2.setVisible(false);
     }//GEN-LAST:event_cutMenuItemActionPerformed
+
+    private void pasteMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasteMenuItemActionPerformed
+       ifreportes.setVisible(false);
+        ifes.setVisible(false);
+        ifca.setVisible(false);
+        iffa.setVisible(false);
+        ifr2.setVisible(true);
+    }//GEN-LAST:event_pasteMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -384,7 +425,6 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem carrera;
     private javax.swing.JMenuItem cutMenuItem;
-    private javax.swing.JMenuItem deleteMenuItem;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenuItem estudiante;
@@ -397,6 +437,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JInternalFrame ifestudiante;
     private javax.swing.JInternalFrame iffa;
     private javax.swing.JInternalFrame iffacultad;
+    private javax.swing.JInternalFrame ifr2;
     private javax.swing.JInternalFrame ifreportes;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JMenuBar menuBar;
