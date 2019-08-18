@@ -21,6 +21,7 @@ public class Principal extends javax.swing.JFrame {
         this.frmcarrera = new frmCarrera();
         initComponents();
         IniciarPanels();
+        sized();
     }
     void IniciarPanels()
     {
@@ -28,6 +29,10 @@ public class Principal extends javax.swing.JFrame {
     ifca.setContentPane(frmcarrera);
     ifes.setContentPane(frmestudiante);
     iffa.setContentPane(frmfacultad);
+    }
+    void sized()
+    {
+        facultad.setSize(300, 200);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,6 +63,8 @@ public class Principal extends javax.swing.JFrame {
         deleteMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        desktopPane.setBackground(new java.awt.Color(0, 0, 51));
 
         ifcarrera.setClosable(true);
         ifcarrera.setIconifiable(true);
@@ -176,12 +183,14 @@ public class Principal extends javax.swing.JFrame {
         desktopPane.add(iffa);
         iffa.setBounds(10, 10, 650, 580);
 
+        fileMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/archivo.jpg"))); // NOI18N
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
 
         facultad.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
         facultad.setMnemonic('o');
         facultad.setText("Facultad");
+        facultad.setInheritsPopupMenu(true);
         facultad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 facultadActionPerformed(evt);
@@ -221,6 +230,7 @@ public class Principal extends javax.swing.JFrame {
 
         menuBar.add(fileMenu);
 
+        editMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reportes.JPG"))); // NOI18N
         editMenu.setMnemonic('e');
         editMenu.setText("Reportes");
 
@@ -255,7 +265,7 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
         );
 
         pack();
@@ -270,7 +280,7 @@ public class Principal extends javax.swing.JFrame {
         iffa.setVisible(false);
         ifes.setVisible(false);        
     }//GEN-LAST:event_carreraActionPerformed
-
+    
     private void facultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facultadActionPerformed
         iffa.setVisible(true);
         ifca.setVisible(false);
