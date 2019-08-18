@@ -32,7 +32,7 @@ DefaultComboBoxModel modelo;
         initComponents();
         ob.cargarFacultad(cmbfacultad);
         llenar();
-      //  btnagregar.setEnabled(false);
+        btnagregar.setEnabled(false);
      //  mostrarFacultad();
        txtcodigo.setEnabled(false);
        modelo = new DefaultComboBoxModel();
