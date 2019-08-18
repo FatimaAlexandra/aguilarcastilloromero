@@ -17,6 +17,7 @@ public class Principal extends javax.swing.JFrame {
     frmEstudiante frmestudiante = new frmEstudiante();
     frmCarrera frmcarrera;
     frmFacultad frmfacultad = new frmFacultad();
+    frmReportes frmreportes = new frmReportes();
     public Principal() throws ClassNotFoundException, SQLException {
         this.frmcarrera = new frmCarrera();
         initComponents();
@@ -29,6 +30,7 @@ public class Principal extends javax.swing.JFrame {
     ifca.setContentPane(frmcarrera);
     ifes.setContentPane(frmestudiante);
     iffa.setContentPane(frmfacultad);
+    ifreportes.setContentPane(frmreportes);
     }
     void sized()
     {
@@ -43,6 +45,7 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jInternalFrame1 = new javax.swing.JInternalFrame();
         desktopPane = new javax.swing.JDesktopPane();
         ifcarrera = new javax.swing.JInternalFrame();
         ifestudiante = new javax.swing.JInternalFrame();
@@ -50,6 +53,7 @@ public class Principal extends javax.swing.JFrame {
         ifca = new javax.swing.JInternalFrame();
         ifes = new javax.swing.JInternalFrame();
         iffa = new javax.swing.JInternalFrame();
+        ifreportes = new javax.swing.JInternalFrame();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         facultad = new javax.swing.JMenuItem();
@@ -58,9 +62,21 @@ public class Principal extends javax.swing.JFrame {
         exitMenuItem = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
         cutMenuItem = new javax.swing.JMenuItem();
-        copyMenuItem = new javax.swing.JMenuItem();
         pasteMenuItem = new javax.swing.JMenuItem();
         deleteMenuItem = new javax.swing.JMenuItem();
+
+        jInternalFrame1.setVisible(true);
+
+        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
+        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
+        jInternalFrame1Layout.setHorizontalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jInternalFrame1Layout.setVerticalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -183,6 +199,26 @@ public class Principal extends javax.swing.JFrame {
         desktopPane.add(iffa);
         iffa.setBounds(10, 10, 650, 580);
 
+        ifreportes.setClosable(true);
+        ifreportes.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        ifreportes.setIconifiable(true);
+        ifreportes.setMaximizable(true);
+        ifreportes.setVisible(false);
+
+        javax.swing.GroupLayout ifreportesLayout = new javax.swing.GroupLayout(ifreportes.getContentPane());
+        ifreportes.getContentPane().setLayout(ifreportesLayout);
+        ifreportesLayout.setHorizontalGroup(
+            ifreportesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        ifreportesLayout.setVerticalGroup(
+            ifreportesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        desktopPane.add(ifreportes);
+        ifreportes.setBounds(10, 10, 660, 450);
+
         fileMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/archivo.jpg"))); // NOI18N
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -235,12 +271,13 @@ public class Principal extends javax.swing.JFrame {
         editMenu.setText("Reportes");
 
         cutMenuItem.setMnemonic('t');
-        cutMenuItem.setText("Cut");
+        cutMenuItem.setText("Reporte");
+        cutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cutMenuItemActionPerformed(evt);
+            }
+        });
         editMenu.add(cutMenuItem);
-
-        copyMenuItem.setMnemonic('y');
-        copyMenuItem.setText("Copy");
-        editMenu.add(copyMenuItem);
 
         pasteMenuItem.setMnemonic('p');
         pasteMenuItem.setText("Paste");
@@ -278,20 +315,30 @@ public class Principal extends javax.swing.JFrame {
     private void carreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carreraActionPerformed
         ifca.setVisible(true);
         iffa.setVisible(false);
-        ifes.setVisible(false);        
+        ifes.setVisible(false);
+        ifreportes.setVisible(false);
     }//GEN-LAST:event_carreraActionPerformed
     
     private void facultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facultadActionPerformed
         iffa.setVisible(true);
         ifca.setVisible(false);
-        ifes.setVisible(false);        
+        ifes.setVisible(false);
+        ifreportes.setVisible(false);
     }//GEN-LAST:event_facultadActionPerformed
 
     private void estudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estudianteActionPerformed
         ifes.setVisible(true);
         ifca.setVisible(false);
         iffa.setVisible(false);
+        ifreportes.setVisible(false);
     }//GEN-LAST:event_estudianteActionPerformed
+
+    private void cutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutMenuItemActionPerformed
+        ifreportes.setVisible(true);
+        ifes.setVisible(false);
+        ifca.setVisible(false);
+        iffa.setVisible(false);
+    }//GEN-LAST:event_cutMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -336,7 +383,6 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem carrera;
-    private javax.swing.JMenuItem copyMenuItem;
     private javax.swing.JMenuItem cutMenuItem;
     private javax.swing.JMenuItem deleteMenuItem;
     private javax.swing.JDesktopPane desktopPane;
@@ -351,6 +397,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JInternalFrame ifestudiante;
     private javax.swing.JInternalFrame iffa;
     private javax.swing.JInternalFrame iffacultad;
+    private javax.swing.JInternalFrame ifreportes;
+    private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem pasteMenuItem;
     // End of variables declaration//GEN-END:variables
