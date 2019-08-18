@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import Identidades.Carrera;
 import java.sql.*;
 import java.util.*;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 /**
  *
@@ -24,7 +26,8 @@ PreparedStatement ps;       //para sentencias sql
     public ArrayList<Carrera> mostrar() throws ClassNotFoundException, SQLException {
          ArrayList<Carrera> ar=new ArrayList<Carrera>();
         try {
-            ps=super.con().prepareStatement("select * from carrera");
+            ps=super.con().prepareStatement("select c.codigoCarrera, c.nombre, c.cantidadMaterias, f.nombre "
+                    + "FROM carrera c INNER JOIN facultad f ON c.codigoFacultad = f.codigoFacultad");
             rs=ps.executeQuery();
             while(rs.next()){
                 c=new Carrera(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4));
@@ -94,6 +97,6 @@ PreparedStatement ps;       //para sentencias sql
         return res;
     
     }
-    
+  
     
 }

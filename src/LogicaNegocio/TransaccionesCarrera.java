@@ -6,10 +6,13 @@
 package LogicaNegocio;
 import DAO.*;
 import Identidades.Carrera;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.*;
-
 /**
  *
  * @author jorge Alberto
@@ -17,6 +20,7 @@ import javax.swing.table.*;
 public class TransaccionesCarrera {
     Carrera c;
     int res=0;
+    Conexion con =new Conexion();
     DaoCarrera ob=new DaoCarrera();
     public DefaultTableModel mostrar(){
         ArrayList<Carrera> ar=new ArrayList<Carrera>();
@@ -42,7 +46,7 @@ public class TransaccionesCarrera {
         try {
             c=new Carrera(nombre, Integer.parseInt(cantidadMaterias), codigoFacultad);
             res=ob.agrgarCarrera(c);
-            if(res>=1)
+            if(res>0)
                 JOptionPane.showMessageDialog(null, "Registro ingresado correctamente");
             else 
                 JOptionPane.showMessageDialog(null, "Registro no se pudo ingresar");
@@ -53,7 +57,7 @@ public class TransaccionesCarrera {
     
     public void modificar(String codigoCarrera, String nombre, String cantidadMaterias, String codigoFacultad){
         try {
-            c=new Carrera(codigoCarrera, Integer.parseInt(cantidadMaterias), codigoFacultad);
+            c=new Carrera(Integer.parseInt(codigoCarrera),nombre, Integer.parseInt(cantidadMaterias), codigoFacultad);
             res=ob.modificarCarrera(c);
             if(res>0)
                 JOptionPane.showMessageDialog(null, "Registro modificado correctamente");
@@ -78,4 +82,31 @@ public class TransaccionesCarrera {
         
        
     }
+     // DefaultComboBoxModel modelo;
+    public void cargarFacultad(JComboBox cmbfacultad) throws ClassNotFoundException, SQLException 
+    {
+        java.sql.Connection conectar = null;
+        ResultSet res;
+        try {
+            con.con();
+            String sql="Select nombre from facultad";
+            PreparedStatement pre = con.con().prepareCall(sql);
+            res = pre.executeQuery();
+            //modelo.removeAllElements();
+            while(res.next()){
+                 cmbfacultad.addItem(res.getString("nombre"));
+             }
+          // cmbfacultad.setModel(modelo); 
+         } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, e);
+        }
+        finally 
+        {
+            if(conectar!=null)
+            {
+                conectar.close();
+            }
+        }
+    }
+    
 }
