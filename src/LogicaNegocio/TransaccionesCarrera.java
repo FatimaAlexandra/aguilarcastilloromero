@@ -89,7 +89,7 @@ public class TransaccionesCarrera {
         ResultSet res;
         try {
             con.con();
-            String sql="Select nombre from facultad";
+            String sql="Select nombre from facultad where estado = 1";
             PreparedStatement pre = con.con().prepareCall(sql);
             res = pre.executeQuery();
             //modelo.removeAllElements();

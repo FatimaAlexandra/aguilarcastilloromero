@@ -27,7 +27,7 @@ PreparedStatement ps;       //para sentencias sql
          ArrayList<Carrera> ar=new ArrayList<Carrera>();
         try {
             ps=super.con().prepareStatement("select c.codigoCarrera, c.nombre, c.cantidadMaterias, f.nombre "
-                    + "FROM carrera c INNER JOIN facultad f ON c.codigoFacultad = f.codigoFacultad");
+                    + "FROM carrera c INNER JOIN facultad f ON c.codigoFacultad = f.codigoFacultad where c.estado=1");
             rs=ps.executeQuery();
             while(rs.next()){
                 c=new Carrera(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4));
@@ -46,8 +46,8 @@ PreparedStatement ps;       //para sentencias sql
     @Override
     public int agrgarCarrera(Carrera c) throws ClassNotFoundException, SQLException {
         try {
-            ps=super.con().prepareStatement("insert into carrera(nombre, cantidadMaterias, codigoFacultad)"
-                    + "values(?,?,(select codigoFacultad from facultad where nombre=?))");
+            ps=super.con().prepareStatement("insert into carrera(nombre, cantidadMaterias, codigoFacultad, estado)"
+                    + "values(?,?,(select codigoFacultad from facultad where nombre=?),1)");
             ps.setString(1, c.getNombre());
             ps.setInt(2, c.getCantidadMaterias());
             ps.setString(3, c.getCodigoFacultad());
@@ -84,7 +84,8 @@ PreparedStatement ps;       //para sentencias sql
     @Override
     public int eliminarCarrera(Carrera c) throws ClassNotFoundException, SQLException {
         try {
-            ps=super.con().prepareStatement("delete from carrera where codigoCarrera=?");
+            ps=super.con().prepareStatement("update carrera  set estado=0 "
+                    + "where codigoCarrera=?");
             
             ps.setInt(1, c.getCodigoCarrera());
             res=ps.executeUpdate();
