@@ -81,7 +81,7 @@ public class DaoRegistro extends Conexion{
                 if(usr.getContraseña().equals(rs.getString(4))){
                     usr.setIdUsuario(rs.getInt(1));
                     usr.setNombre(rs.getString(3));
-                    usr.setTipoUsuario(rs.getString(5));
+                    usr.setTipoUsuario(rs.getString(5));                   
                     return true;
                 }else{
                     return false;

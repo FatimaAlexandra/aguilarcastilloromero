@@ -29,7 +29,7 @@ public class frmFacultad extends javax.swing.JPanel {
      */
     public frmFacultad() {
         initComponents();
-        llenar();
+        llenar();        
     }
     
     //Para llenar el Jtable
@@ -42,6 +42,11 @@ public class frmFacultad extends javax.swing.JPanel {
         this.txtCodigoFacultad.setText("");
         this.txtNombre.setText("");
         this.txtTelefono.setText("");
+    }
+    
+    public void inhabilitar(){
+        this.btnEliminar.setEnabled(false);
+        this.btnModificar.setEnabled(false);
     }
 
     /**

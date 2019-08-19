@@ -35,7 +35,7 @@ public class login1 extends javax.swing.JFrame {
             if(ob.login(mod)){   
                 
                 try {
-                    Principal md = new Principal();
+                    Principal md = new Principal(mod);
                     md.setVisible(true);
                     this.dispose();
                 } catch (Exception e) {

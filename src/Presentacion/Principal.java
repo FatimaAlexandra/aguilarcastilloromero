@@ -3,6 +3,9 @@ package Presentacion;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import Identidades.Registro;
+import com.itextpdf.text.pdf.PdfName;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -10,33 +13,71 @@ import java.util.logging.Logger;
  */
 public class Principal extends javax.swing.JFrame {
     
+    Registro mod;
+    
     /**
      * Creates new form Principal
      */
     
-    frmEstudiante frmestudiante = new frmEstudiante();
-    frmCarrera frmcarrera;
-    frmFacultad frmfacultad = new frmFacultad();
-    frmReportes frmreportes = new frmReportes();
-    frmReportes2 frmr2 = new frmReportes2();
-    public Principal() throws ClassNotFoundException, SQLException {
-        this.frmcarrera = new frmCarrera();
-        initComponents();
-        IniciarPanels();
+    
+    public Principal() throws ClassNotFoundException, SQLException {       
+        initComponents();       
         sized();
+    }   
+        
+    public Principal(Registro mod)throws ClassNotFoundException, SQLException{
+        initComponents();
+        
+        this.mod = mod;
+        lblNombre.setText(mod.getNombre());
+                           
+        if("Administrador".equals(mod.getTipoUsuario())){
+            //Es administrador tiene todos los accesos    
+            llenado();
+        }else if("Invitado".equals(mod.getTipoUsuario())){
+            this.setExtendedState(Principal.MAXIMIZED_BOTH);
+            
+            editMenu.setVisible(false);
+            
+            frmFacultad frmfacultad = new frmFacultad();
+            frmCarrera frmcarrera = new frmCarrera();
+            
+            iffa.setContentPane(frmfacultad);
+            ifca.setContentPane(frmcarrera);
+            
+            frmfacultad.inhabilitar();
+            frmcarrera.inhabilitar();
+                            
+        }
     }
-    void IniciarPanels()
-    {
-        this.setExtendedState(Principal.MAXIMIZED_BOTH);
-    ifca.setContentPane(frmcarrera);
-    ifes.setContentPane(frmestudiante);
-    iffa.setContentPane(frmfacultad);
-    ifreportes.setContentPane(frmreportes);
-    ifr2.setContentPane(frmr2);
-    }
+    
+    
     void sized()
     {
         facultad.setSize(300, 200);
+    }
+    
+    void llenado(){
+       
+        try {
+            this.setExtendedState(Principal.MAXIMIZED_BOTH);
+            
+            frmFacultad frmfacultad = new frmFacultad();
+            frmCarrera frmcarrera = new frmCarrera();
+            frmEstudiante frmestudiante = new frmEstudiante();
+            frmReportes frmreportes = new frmReportes();
+            frmReportes2 frmr2 = new frmReportes2();            
+                        
+            iffa.setContentPane(frmfacultad);
+            ifca.setContentPane(frmcarrera);
+            ifes.setContentPane(frmestudiante);
+            ifreportes.setContentPane(frmreportes);
+            ifr2.setContentPane(frmr2);
+            
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al llenar los paneles");
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -57,6 +98,7 @@ public class Principal extends javax.swing.JFrame {
         iffa = new javax.swing.JInternalFrame();
         ifreportes = new javax.swing.JInternalFrame();
         ifr2 = new javax.swing.JInternalFrame();
+        lblNombre = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         facultad = new javax.swing.JMenuItem();
@@ -240,6 +282,13 @@ public class Principal extends javax.swing.JFrame {
 
         desktopPane.add(ifr2);
         ifr2.setBounds(60, 30, 530, 420);
+
+        lblNombre.setBackground(new java.awt.Color(255, 255, 255));
+        lblNombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblNombre.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombre.setText("Nombre:");
+        desktopPane.add(lblNombre);
+        lblNombre.setBounds(190, 110, 80, 30);
 
         fileMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ca.png"))); // NOI18N
         fileMenu.setMnemonic('f');
@@ -440,6 +489,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JInternalFrame ifr2;
     private javax.swing.JInternalFrame ifreportes;
     private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JLabel lblNombre;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem pasteMenuItem;
     // End of variables declaration//GEN-END:variables
