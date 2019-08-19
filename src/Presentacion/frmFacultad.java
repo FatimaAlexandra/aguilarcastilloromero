@@ -29,7 +29,8 @@ public class frmFacultad extends javax.swing.JPanel {
      */
     public frmFacultad() {
         initComponents();
-        llenar();        
+        llenar();   
+        this.setMaximumSize(getMaximumSize());
     }
     
     //Para llenar el Jtable

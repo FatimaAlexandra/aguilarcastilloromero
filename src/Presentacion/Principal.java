@@ -22,7 +22,6 @@ public class Principal extends javax.swing.JFrame {
     
     public Principal() throws ClassNotFoundException, SQLException {       
         initComponents();       
-        sized();
     }   
         
     public Principal(Registro mod)throws ClassNotFoundException, SQLException{
@@ -30,6 +29,7 @@ public class Principal extends javax.swing.JFrame {
         
         this.mod = mod;
         lblNombre.setText(mod.getNombre());
+        lblTipo.setText(mod.getTipoUsuario());
                            
         if("Administrador".equals(mod.getTipoUsuario())){
             //Es administrador tiene todos los accesos    
@@ -47,15 +47,12 @@ public class Principal extends javax.swing.JFrame {
             
             frmfacultad.inhabilitar();
             frmcarrera.inhabilitar();
+            
+            frmfacultad.setAlignmentX(TOP_ALIGNMENT);
                             
         }
     }
     
-    
-    void sized()
-    {
-        facultad.setSize(300, 200);
-    }
     
     void llenado(){
        
@@ -98,7 +95,11 @@ public class Principal extends javax.swing.JFrame {
         iffa = new javax.swing.JInternalFrame();
         ifreportes = new javax.swing.JInternalFrame();
         ifr2 = new javax.swing.JInternalFrame();
+        jPanel1 = new javax.swing.JPanel();
+        bienvenido = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
+        usuario = new javax.swing.JLabel();
+        lblTipo = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         facultad = new javax.swing.JMenuItem();
@@ -283,12 +284,31 @@ public class Principal extends javax.swing.JFrame {
         desktopPane.add(ifr2);
         ifr2.setBounds(60, 30, 530, 420);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        bienvenido.setBackground(new java.awt.Color(255, 255, 255));
+        bienvenido.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        bienvenido.setText("Bienvenido:");
+        jPanel1.add(bienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 110, 30));
+
         lblNombre.setBackground(new java.awt.Color(255, 255, 255));
-        lblNombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblNombre.setForeground(new java.awt.Color(255, 255, 255));
-        lblNombre.setText("Nombre:");
-        desktopPane.add(lblNombre);
-        lblNombre.setBounds(190, 110, 80, 30);
+        lblNombre.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblNombre.setText("x");
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 170, 30));
+
+        usuario.setBackground(new java.awt.Color(255, 255, 255));
+        usuario.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        usuario.setText("Usuario:");
+        jPanel1.add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 10, 90, 30));
+
+        lblTipo.setBackground(new java.awt.Color(255, 255, 255));
+        lblTipo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblTipo.setText("x");
+        jPanel1.add(lblTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 10, 120, 30));
+
+        desktopPane.add(jPanel1);
+        jPanel1.setBounds(0, 0, 2000, 50);
 
         fileMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ca.png"))); // NOI18N
         fileMenu.setMnemonic('f');
@@ -472,6 +492,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bienvenido;
     private javax.swing.JMenuItem carrera;
     private javax.swing.JMenuItem cutMenuItem;
     private javax.swing.JDesktopPane desktopPane;
@@ -489,9 +510,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JInternalFrame ifr2;
     private javax.swing.JInternalFrame ifreportes;
     private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblTipo;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem pasteMenuItem;
+    private javax.swing.JLabel usuario;
     // End of variables declaration//GEN-END:variables
 
 }
